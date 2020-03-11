@@ -1,17 +1,18 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const channelSchema = new Schema({
-  name: { 
+  name: {
     type: String,
     required: true,
-    maxlength: 100
+    maxlength: 100,
   },
   description: {
     type: String,
     required: false,
-    maxlength: 150
-  }
+    maxlength: 150,
+  },
 });
 
 module.exports = mongoose.model('Channel', channelSchema);
