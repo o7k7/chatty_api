@@ -4,14 +4,14 @@ import passport from 'passport';
 import { respond, authenticate, generateAccessToken } from '../mw/authenticationMw.js';
 
 import Account from '../model/account.js'
-import UserDataExt from'./extensions/userData-ext.js';
+import UserHelper from'./helpers/UserHelper.js';
 
 export default ({ db }) => {
   const api = express.Router();
 
   // '/v1/accounts/register'
   api.post('/register', (req, res) => {
-    UserDataExt.findUserByEmail(req.body.email, (error, userData) => {
+    UserHelper.findUserByEmail(req.body.email, (error, userData) => {
       if (error) {
         res.status(409).json({ message: `An error occured: ${error.message}` });
       } else if (userData) {
@@ -33,7 +33,7 @@ export default ({ db }) => {
 
   // '/v1/accounts/login'
   api.post('/login', (req, res, next) => {
-    UserDataExt.findUserByEmail(req.body.email, (err, userData) => {
+    UserHelper.findUserByEmail(req.body.email, (err, userData) => {
       if (err) {
         res.status(409).json({ message: `An error occured: ${err.message}` });
       } else {
@@ -47,15 +47,15 @@ export default ({ db }) => {
   }, generateAccessToken, respond);
 
   // '/v1/accounts/logout'
-  // api.get('/logout', authenticate, (req, res) => {
-  //   req.logout();
-  //   delete req.session;
-  //   res.status(200).send();
-  // });
+  api.get('/logout', authenticate, (req, res) => {
+    req.logout();
+    delete req.session;
+    res.status(200).send();
+  });
 
-  // api.get('/me', authenticate, (req, res) => {
-  //   res.status(200).json(req.user);
-  // });
+  api.get('/me', authenticate, (req, res) => {
+    res.status(200).json(req.user);
+  });
 
   return api;
 };

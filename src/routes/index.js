@@ -8,13 +8,10 @@ import message from '../controller/message.js';
 const router = express();
 
 connectDB((db) => {
-  // router.use('/users', user({ db }));
+  router.use('/users', user({ db }));
   router.use('/accounts', account({ db }));
-  // router.use('/channels', channel({ db }));
-  // router.use('/messages', message({ db }));
-  // router.get('/register1', (req, res) => {
-  //   res.send("A");
-  // });
+  router.use('/channels', channel({ db }));
+  router.use('/messages', message({ db }));
 });
 
 export default router;

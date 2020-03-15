@@ -10,12 +10,20 @@ export default ({ db }) => {
   // '/v1/messages/add' - Create
   api.post('/add', authenticate, (req, res) => {
     const newMessage = new Message();
-    newMessage.messageBody = req.body.messageBody;
-    newMessage.userId = req.body.userId;
-    newMessage.channelId = req.body.channelId;
-    newMessage.userName = req.body.userName;
-    newMessage.userAvatar = req.body.userAvatar;
-    newMessage.userAvatarColor = req.body.userAvatarColor;
+    const {
+      messageBody,
+      userId,
+      channelId,
+      userName,
+      userAvatar,
+      userAvatarColor,
+    } = req.body;
+    newMessage.messageBody = messageBody;
+    newMessage.userId = userId;
+    newMessage.channelId = channelId;
+    newMessage.userName = userName;
+    newMessage.userAvatar = userAvatar;
+    newMessage.userAvatarColor = userAvatarColor;
 
     newMessage.save((err) => {
       if (err) {
@@ -27,24 +35,31 @@ export default ({ db }) => {
 
   // '/v1/messages/:id' - Update
   api.put('/:id', authenticate, (req, res) => {
-    Message.findById(req.params.id, (err, message) => {
-      const modifiedMessage = message;
-      if (err) {
-        res.status(500).json({ message: err });
-      }
-      modifiedMessage.messageBody = req.body.messageBody;
-      modifiedMessage.userId = req.body.userId;
-      modifiedMessage.channelId = req.body.channelId;
-      modifiedMessage.userName = req.body.userName;
-      modifiedMessage.userAvatar = req.body.userAvatar;
-      modifiedMessage.userAvatarColor = req.body.userAvatarColor;
+    const {
+      messageBody,
+      userId,
+      channelId,
+      userName,
+      userAvatar,
+      userAvatarColor,
+    } = req.body;
+    const filter = { _id: req.params.id };
+    const update = {
+      messageBody,
+      userId,
+      channelId,
+      userName,
+      userAvatar,
+      userAvatarColor,
+    };
 
-      modifiedMessage.save((error) => {
-        if (err) {
-          res.status(500).json({ message: error });
-        }
-        res.status(200).json({ message: 'Message updated' });
-      });
+    Message.findOneAndUpdate(filter, update, {
+      new: true,
+    }, (error, updatedMessage) => {
+      if (error) {
+        res.status(500).json({ message: error });
+      }
+      res.status(200).json({ message: 'Message updated' });
     });
   });
 

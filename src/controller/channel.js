@@ -8,7 +8,7 @@ import { authenticate } from '../mw/authenticationMw.js';
 export default ({ db }) => {
   const api = Router();
 
-  // '/v1/channel/add' - Create
+  // '/v1/channels/add' - Create
   api.post('/add', authenticate, (req, res) => {
     const newChannel = new Channel();
     newChannel.name = req.body.name;

@@ -4,6 +4,8 @@ import { authenticate } from '../mw/authenticationMw.js';
 
 import User from '../model/user.js';
 
+import UserHelper from './helpers/UserHelper.js'
+
 export default ({ db }) => {
   const api = Router();
 
@@ -45,40 +47,38 @@ export default ({ db }) => {
 
   // '/v1/users/:id' - Update
   api.put('/:id', authenticate, (req, res) => {
-    User.findById(req.params.id, (err, user) => {
-      if (err) {
-        res.status(500).json({ message: err });
+    const {
+      name,
+      email,
+      avatarName,
+      avatarColor,
+    } = req.body;
+    const filter = { _id: req.params.id };
+    const update = {
+      name,
+      email,
+      avatarName,
+      avatarColor,
+    };
+
+    User.findOneAndUpdate(filter, update, {
+      new: true,
+    }, (error, updatedUser) => {
+      if (error) {
+        res.status(500).json({ message: error });
       }
-      const modifiedUser = user;
-      const {
-        name,
-        email,
-        avatarName,
-        avatarColor,
-      } = req.body;
-      modifiedUser.name = name;
-      modifiedUser.email = email;
-      modifiedUser.avatarName = avatarName;
-      modifiedUser.avatarColor = avatarColor;
-      modifiedUser.save((error) => {
-        if (error) {
-          res.status(500).json({ message: error });
-        }
-        res.status(200).json({ message: 'User info updated' });
-      });
+      res.status(200).json({ message: 'User info updated' });
     });
   });
 
   // 'v1/users/byEmail/:email'
   api.get('/byEmail/:email', authenticate, (req, res) => {
-    User
-      .findOne({ 'email': req.params.email })
-      .exec((err, userData) => {
-        if (err) {
-          res.status(500).json({ message: err });
-        }
-        res.status(200).json(userData);
-      });
+    UserHelper.findUserByEmail(req.params.email, (error, user) => {
+      if (error) {
+        res.status(500).json({ message: error });
+      }
+      res.status(200).json(user);
+    });
   });
 
   // '/vq/users/:id' -Delete

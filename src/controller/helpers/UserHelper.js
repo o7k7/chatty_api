@@ -1,8 +1,8 @@
 import User from '../../model/user.js';
 
-class UserDataExt {
+class UserHelper {
   static findUserByEmail(email, callback) {
-    User.findOne({ 'email': email }, (err, userData) => {
+    User.findOne({ email }, (err, userData) => {
       if (err) {
         return callback(err, null);
       }
@@ -11,4 +11,4 @@ class UserDataExt {
   }
 }
 
-export default UserDataExt;
+export default UserHelper;
