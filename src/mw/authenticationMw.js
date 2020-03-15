@@ -1,5 +1,6 @@
-const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
+import jwt from 'jsonwebtoken';
+
+import expressJwt from 'express-jwt';
 
 const TOKENTIME = 60 * 60 * 24 * 30; // 1 month
 
@@ -26,7 +27,7 @@ const respond = (req, res) => {
   });
 };
 
-module.exports = {
+export {
   authenticate,
   generateAccessToken,
   respond,

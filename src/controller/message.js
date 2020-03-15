@@ -1,9 +1,10 @@
-import { Router } from 'express';
-import Message from '../model/message';
+import Router from 'express';
 
-import { authenticate } from '../mw/authenticationMw';
+import Message from '../model/message.js';
 
-export default ({ config, db }) => {
+import { authenticate } from '../mw/authenticationMw.js';
+
+export default ({ db }) => {
   const api = Router();
 
   // '/v1/messages/add' - Create

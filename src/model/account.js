@@ -1,23 +1,12 @@
-const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+import mongoose from 'mongoose';
+import passportLocalMongoose from 'passport-local-mongoose';
 
 const { Schema } = mongoose;
 
 const Account = new Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    maxlength: 100,
-  },
-  password: {
-    type: String,
-    required: true,
-    maxlength: 10,
-    minlength: 4,
-  },
+  email: String,
+  password: String,
 });
 
-
 Account.plugin(passportLocalMongoose);
-module.exports = mongoose.model('Account', Account);
+export default mongoose.model('Account', Account);

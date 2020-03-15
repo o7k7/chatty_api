@@ -1,6 +1,6 @@
-import { Router } from 'express';
+import express from 'express';
 
-export default ({ config, db }) => {
-  const api = Router();
+export default ({ db }) => {
+  const api = express.Router();
   return api;
 };

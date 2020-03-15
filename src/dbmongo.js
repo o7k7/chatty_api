@@ -1,21 +1,17 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const connectDB = (callback) => {
+export default (connectDB) => {
   let db;
   // Connect to the database before starting the application server.
-  mongoose.connect(process.env.DB_URL,
-    { useNewUrlParser: true, useUnifiedTopology: true },
+  mongoose.connect("mongodb://localhost:27017/chat-api-cluster",
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
     (err, database) => {
       if (err) {
-        console.log("ERRRR:: ", err);
+        console.log('ERROR:: ', err);
       }
       // Save database object from the callback for reuse.
       db = database;
       console.log('Database connection ready');
-      callback(db);
+      connectDB(db);
     });
-};
-
-module.exports = {
-  connectDB,
 };

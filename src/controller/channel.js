@@ -1,10 +1,11 @@
-import { Router } from 'express';
-import Channel from '../model/channel';
-import User from '../model/user';
+import Router from 'express';
 
-import { authenticate } from '../mw/authenticationMw';
+import Channel from '../model/channel.js';
+import User from '../model/user.js';
 
-export default ({ config, db }) => {
+import { authenticate } from '../mw/authenticationMw.js';
+
+export default ({ db }) => {
   const api = Router();
 
   // '/v1/channel/add' - Create
@@ -17,7 +18,7 @@ export default ({ config, db }) => {
       if (err) {
         res.status(500).json({ message: err });
       }
-      res.status(200).json({ message: 'Channel saved successfully' })
+      res.status(200).json({ message: 'Channel saved successfully' });
     });
   });
 

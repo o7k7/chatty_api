@@ -1,13 +1,13 @@
-import { Router } from 'express';
-import { generateAccessToken, respond, authenticate } from '../mw/authenticationMw';
+import express from 'express';
+import passport from 'passport';
 
-const passport = require('passport');
-const Account = require('../model/account');
-const UserDataExt = require('./extensions/userData-ext');
+import { respond, authenticate, generateAccessToken } from '../mw/authenticationMw.js';
 
+import Account from '../model/account.js'
+import UserDataExt from'./extensions/userData-ext.js';
 
-export default ({ config, db }) => {
-  const api = Router();
+export default ({ db }) => {
+  const api = express.Router();
 
   // '/v1/accounts/register'
   api.post('/register', (req, res) => {
@@ -47,15 +47,15 @@ export default ({ config, db }) => {
   }, generateAccessToken, respond);
 
   // '/v1/accounts/logout'
-  api.get('/logout', authenticate, (req, res) => {
-    req.logout();
-    delete req.session;
-    res.status(200).send();
-  });
+  // api.get('/logout', authenticate, (req, res) => {
+  //   req.logout();
+  //   delete req.session;
+  //   res.status(200).send();
+  // });
 
-  api.get('/me', authenticate, (req, res) => {
-    res.status(200).json(req.user);
-  });
+  // api.get('/me', authenticate, (req, res) => {
+  //   res.status(200).json(req.user);
+  // });
 
   return api;
 };

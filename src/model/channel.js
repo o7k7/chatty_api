@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -14,5 +14,5 @@ const channelSchema = new Schema({
     maxlength: 150,
   },
 });
-
-module.exports = mongoose.model('Channel', channelSchema);
+const Channel = mongoose.model('Channel', channelSchema);
+export default Channel;

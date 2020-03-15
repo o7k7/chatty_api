@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 const { ObjectId } = mongoose.Schema.Types;
@@ -26,5 +26,4 @@ const messageSchema = new Schema({
   userAvatarColor: { type: String, default: '' },
 });
 
-
-module.exports = mongoose.model('Message', messageSchema);
+export default mongoose.model('Message', messageSchema);

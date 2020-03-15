@@ -1,9 +1,10 @@
-import { Router } from 'express';
-import User from '../model/user';
+import Router from 'express';
 
-import { authenticate } from '../mw/authenticationMw';
+import { authenticate } from '../mw/authenticationMw.js';
 
-export default ({ config, db }) => {
+import User from '../model/user.js';
+
+export default ({ db }) => {
   const api = Router();
 
   // '/v1/users/add' - Create
