@@ -53,7 +53,7 @@ export default ({ db }) => {
     res.status(200).send();
   });
 
-  api.get('/me', authenticate, (req, res) => {
+  api.get('/aboutMe', authenticate, (req, res) => {
     res.status(200).json(req.user);
   });
 

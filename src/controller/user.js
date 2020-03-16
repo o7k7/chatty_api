@@ -71,8 +71,8 @@ export default ({ db }) => {
     });
   });
 
-  // 'v1/users/byEmail/:email'
-  api.get('/byEmail/:email', authenticate, (req, res) => {
+  // 'v1/users/email/:email'
+  api.get('/email/:email', authenticate, (req, res) => {
     UserHelper.findUserByEmail(req.params.email, (error, user) => {
       if (error) {
         res.status(500).json({ message: error });

@@ -63,8 +63,8 @@ export default ({ db }) => {
     });
   });
 
-  // '/v1/messages/byChannel/:channelId'
-  api.get('/byChannel/:channelId', authenticate, (req, res) => {
+  // '/v1/messages/channel/:channelId'
+  api.get('/channel/:channelId', authenticate, (req, res) => {
     Message
       .find({ 'channelId': req.params.channelId }, (err, messages) => {
         if (err) {
