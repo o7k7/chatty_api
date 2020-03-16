@@ -1,0 +1,505 @@
+{
+	"info": {
+		"_postman_id": "4836e7af-392f-4664-8cff-0d6d35c9aa2f",
+		"name": "ChatAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "AccountRegister",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"asd@gmail.com\",\n\t\"password\": \"1234256\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/accounts/register",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AboutMe",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/accounts/aboutMe",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								"aboutMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNjM3YTMzOWJiMTY1MTdjOGQ3YWRlMiIsImlhdCI6MTU4MzU3OTM4MiwiZXhwIjoxNTg2MTcxMzgyfQ.lqkVvqmy2pXXOQ9Ck4vpF9NNI3c9BZ15ybFwz9JgFBU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/accounts/logout",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"asd@gmail.com\",\n\t\"password\":\"1234256\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/accounts/login",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Channel",
+			"item": [
+				{
+					"name": "Get Channels",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/channels",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"channels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Channel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"NewTestChannel\",\n\t\"description\": \"Channel for testing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/channels/add",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"channels",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Channel With ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/channels/5e6e5877f9f7ffff277c3b4b",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"channels",
+								"5e6e5877f9f7ffff277c3b4b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Channel",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/channels/5e6e5877f9f7ffff277c3b4b",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"channels",
+								"5e6e5877f9f7ffff277c3b4b"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "Send Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"messageBody\":\"Test Message\",\n\t\"userId\":\"5e6e3ee7e063fff4ce6acd3c\",\n\t\"channelId\":\"5e6e5877f9f7ffff277c3b4b\",\n\t\"username\":\"asd@gmail.com\",\n\t\"userAvatar\":\"\",\n\t\"userAvatarColor\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/messages/add",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"messages",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateMessage",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"messageBody\":\"Newly Updated Test Message\",\n\t\"userId\":\"5e6e3ee7e063fff4ce6acd3c\",\n\t\"channelId\":\"5e6e5877f9f7ffff277c3b4b\",\n\t\"username\":\"asd@gmail.com\",\n\t\"userAvatar\":\"\",\n\t\"userAvatarColor\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/messages/5e6e59eb3777270054aecca5",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"messages",
+								"5e6e59eb3777270054aecca5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Messages By Channel",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/messages/channel/5e6e5877f9f7ffff277c3b4b",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"messages",
+								"channel",
+								"5e6e5877f9f7ffff277c3b4b"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Add User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Orhun\",\n\t\"email\": \"asd@gmail.com\",\n\t\"avatarName\": \"\",\n\t\"avatarColor\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/users/add",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/users",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/users/5e6e5c263777270054aecca6",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"5e6e5c263777270054aecca6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Orhun New Updated\",\n\t\"email\": \"asd@gmail.com\",\n\t\"avatarName\": \"\",\n\t\"avatarColor\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/users/5e6e5c263777270054aecca6",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"5e6e5c263777270054aecca6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Mail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{test_url}}{{port}}/v1/users/email/asd@gmail.com",
+							"host": [
+								"{{test_url}}{{port}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"email",
+								"asd@gmail.com"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
