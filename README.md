@@ -1,4 +1,4 @@
-# chatty_api
+# Chatty API
 
 ##### Technologies that in use
 - MongoDB
